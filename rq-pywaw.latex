@@ -76,8 +76,8 @@
 %\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
 }
 
-\usepackage{graphicx} % Allows including images
-\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{graphicx}
+\usepackage{booktabs}
 
 % For pygmentize
 \usepackage{fancyvrb}
@@ -89,14 +89,14 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title[Queuing tasks with RQ]{How we kept it simple.} % The short title appears at the bottom of every slide, the full title is only on the title page
+\title{Queuing tasks with RQ} % The short title appears at the bottom of every slide, the full title is only on the title page
 
 \author{Szymon Pyżalski}
 \institute[Allegro Group]
 {
 Allegro Group \\
 \medskip
-\textit{szymon@pythonista.net} % Your email address
+\textit{szymon@pythonista.net}
 }
 \date{\today}
 
@@ -112,10 +112,7 @@ Allegro Group \\
 \end{frame}
 
 
-%------------------------------------------------
-\section{About rq} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
-%------------------------------------------------
-
+\section{About rq}
 \subsection{What's cool}
 
 \begin{frame}
@@ -133,7 +130,9 @@ Allegro Group \\
 
 \begin{frame}
 \frametitle{Simple to use}
+\pause
 \input{queueing1}
+\pause
 \input{queueing2}
 \end{frame}
 
@@ -149,7 +148,7 @@ Allegro Group \\
 
 \begin{frame}
 \frametitle{Simple to debug}
-Workers are OK with pdb
+\centerline{Workers are OK with pdb}
 \end{frame}
 
 \subsection{What's problematic}
@@ -159,9 +158,16 @@ Workers are OK with pdb
     \begin{itemize}
             \pause
         \item You can use only picklable arguments
+            \pause
         \item ...and you can't pickle django requests
     \end{itemize}
 \end{frame}
+
+\begin{frame}
+    \frametitle{Reimporting functions}
+\centerline{You can only schedule top-level functions}
+\end{frame}
+
 
 %------------------------------------------------
 
