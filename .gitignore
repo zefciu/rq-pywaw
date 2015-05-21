@@ -5,3 +5,6 @@
 *.log
 *.toc
 *.snm
+*.tex
+*.dvi
+*.vrb
