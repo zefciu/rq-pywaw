@@ -8,3 +8,5 @@ queueing1.tex: queueing1.py Makefile
 	pygmentize -l console -o queueing1.tex queueing1.py
 queueing2.tex: queueing2.py Makefile
 	pygmentize -l console -o queueing2.tex queueing2.py
+dashboard.tex: dashboard.sh Makefile
+	pygmentize -l console -o dashboard.tex dashboard.sh

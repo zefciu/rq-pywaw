@@ -131,13 +131,37 @@ Allegro Group \\
 \end{frame}
 
 
-
 \begin{frame}
 \frametitle{Simple to use}
 \input{queueing1}
 \input{queueing2}
 \end{frame}
 
+\begin{frame}
+\frametitle{Simple to communicate}
+\input{metadata}
+\end{frame}
+
+\begin{frame}
+\frametitle{Simple to monitor}
+\input{dashboard}
+\end{frame}
+
+\begin{frame}
+\frametitle{Simple to debug}
+Workers are OK with pdb
+\end{frame}
+
+\subsection{What's problematic}
+
+\begin{frame}
+    \frametitle{Pickle based}
+    \begin{itemize}
+            \pause
+        \item You can use only picklable arguments
+        \item ...and you can't pickle django requests
+    \end{itemize}
+\end{frame}
 
 %------------------------------------------------
 
