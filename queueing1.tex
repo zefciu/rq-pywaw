@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{g+go}{from rq import Queue}
+\PY{g+go}{from redis import Redis}
+
+\PY{g+go}{conn = Redis()}
+\PY{g+go}{q = Queue(connection=conn)}
+\PY{g+go}{q.enqueue(my\PYZus{}job, arg1, arg2)}
+\end{Verbatim}
