@@ -89,7 +89,7 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title{Queuing tasks with RQ} % The short title appears at the bottom of every slide, the full title is only on the title page
+\title{Queuing tasks with RQ}
 
 \author{Szymon Pyżalski}
 \institute[Allegro Group]
@@ -168,11 +168,76 @@ Allegro Group \\
 \centerline{You can only schedule top-level functions}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Exception-based control}
+    \begin{itemize}
+            \pause
+        \item Signals are used to time-out the workers
+            \pause
+        \item This can create problems with faulty code
+            \pause
+        \item Unfortunately paramiko has this problem
+            \pause
+        \item Result: dying workers
+    \end{itemize}
+\end{frame}
+
+\section{RQ in ralph}
+\subsection{Why we nneded it}
+
+\begin{frame}
+    \frametitle{What is ralph?}
+    \begin{itemize}
+            \pause
+    \item Asset management
+            \pause
+    \item Hardware scanning
+            \pause
+    \item Service-oriented pricing
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Our problem}
+    \begin{itemize}
+            \pause
+    \item Lot of per-www that take more than http timeout
+            \pause
+    \item Long automated tasks
+            \pause
+    \item Tasks divisible into subtasks
+    \end{itemize}
+\end{frame}
+\subsection{Our solutions}
+\begin{frame}
+    \frametitle{Scan}
+    \begin{itemize}
+        \pause
+    \item Scan tasks delegate per-plugin tasks
+        \pause
+    \item Per-environment queues
+        \pause
+    \item Long storage of the results
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Reports}
+    \begin{itemize}
+    \item Simple framework
+        \pause
+    \item Tasks as pseudo-views
+        \pause
+    \item Using \Verb|job['meta']| to generate ETA/progress-bar
+        \pause
+    \end{itemize}
+\end{frame}
+
 
 %------------------------------------------------
 
 \begin{frame}
-\Huge{\centerline{The End}}
+\Huge{\centerline{Questions?}}
 \end{frame}
 
 %----------------------------------------------------------------------------------------
