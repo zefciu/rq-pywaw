@@ -1,83 +1,12 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Beamer Presentation
-% LaTeX Template
-% Version 1.0 (10/11/12)
-%
-% This template has been downloaded from:
-% http://www.LaTeXTemplates.com
-%
-% License:
-% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%----------------------------------------------------------------------------------------
-%	PACKAGES AND THEMES
-%----------------------------------------------------------------------------------------
-
 \documentclass{beamer}
 
 \mode<presentation> {
-
-% The Beamer class comes with a number of default slide themes
-% which change the colors and layouts of slides. Below this is a list
-% of all the themes, uncomment each in turn to see what they look like.
-
-%\usetheme{default}
-%\usetheme{AnnArbor}
-%\usetheme{Antibes}
-%\usetheme{Bergen}
-%\usetheme{Berkeley}
-%\usetheme{Berlin}
-%\usetheme{Boadilla}
-%\usetheme{CambridgeUS}
-%\usetheme{Copenhagen}
-%\usetheme{Darmstadt}
-%\usetheme{Dresden}
-%\usetheme{Frankfurt}
-%\usetheme{Goettingen}
-%\usetheme{Hannover}
-%\usetheme{Ilmenau}
-%\usetheme{JuanLesPins}
-%\usetheme{Luebeck}
-\usetheme{Madrid}
-%\usetheme{Malmoe}
-%\usetheme{Marburg}
-%\usetheme{Montpellier}
-%\usetheme{PaloAlto}
-%\usetheme{Pittsburgh}
-%\usetheme{Rochester}
-%\usetheme{Singapore}
-%\usetheme{Szeged}
-%\usetheme{Warsaw}
-
-% As well as themes, the Beamer class has a number of color themes
-% for any slide theme. Uncomment each of these in turn to see how it
-% changes the colors of your current slide theme.
-
-%\usecolortheme{albatross}
-%\usecolortheme{beaver}
-%\usecolortheme{beetle}
-%\usecolortheme{crane}
-%\usecolortheme{dolphin}
-%\usecolortheme{dove}
-%\usecolortheme{fly}
-%\usecolortheme{lily}
-%\usecolortheme{orchid}
-%\usecolortheme{rose}
-%\usecolortheme{seagull}
-%\usecolortheme{seahorse}
-%\usecolortheme{whale}
-%\usecolortheme{wolverine}
-
-%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
-%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
-
-%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+    \usetheme{Madrid}
 }
 
 \usepackage{graphicx}
 \usepackage{booktabs}
+\usepackage[utf8]{inputenc}
 
 % For pygmentize
 \usepackage{fancyvrb}
@@ -111,9 +40,17 @@ Allegro Group \\
 \tableofcontents
 \end{frame}
 
+\begin{frame}
+\frametitle{RQ - simple queues in Python}
+    \begin{figure}
+    \includegraphics[height=\textheight]{queue}
+    \end{figure}
+\end{frame}
 
 \section{About rq}
+\frame{\sectionpage}
 \subsection{What's cool}
+\frame{\subsectionpage}
 
 \begin{frame}
 \frametitle{Simple to set up}
@@ -147,11 +84,35 @@ Allegro Group \\
 \end{frame}
 
 \begin{frame}
+\frametitle{RQ - simple queues in Python}
+    \begin{figure}
+    \includegraphics[height=\textheight]{rqdashboard}
+    \end{figure}
+\end{frame}
+
+
+
+\begin{frame}
 \frametitle{Simple to debug}
 \centerline{Workers are OK with pdb}
 \end{frame}
 
 \subsection{What's problematic}
+\frame{\subsectionpage}
+
+\begin{frame}
+    \frametitle{Pickle based}
+    \begin{figure}
+    \includegraphics[height=\textheight]{pickle1}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Pickle based}
+    \begin{figure}
+    \includegraphics[height=\textheight]{pickle2}
+    \end{figure}
+\end{frame}
 
 \begin{frame}
     \frametitle{Pickle based}
@@ -160,38 +121,59 @@ Allegro Group \\
         \item You can use only picklable arguments
             \pause
         \item ...and you can't pickle django requests
+            \pause
+        \item ...which means you can't simply queue views
     \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{Reimporting functions}
-\centerline{You can only schedule top-level functions}
+    \begin{itemize}
+            \pause
+        \item RQ stores the path to the job function
+            \pause
+        \item The worker reimports the function
+            \pause
+        \item ...so you can't queue methods
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Exception-based control}
+    \frametitle{Signal-based control}
     \begin{itemize}
             \pause
         \item Signals are used to time-out the workers
             \pause
-        \item This can create problems with faulty code
+        \item Signals are handled as exceptions
             \pause
-        \item Unfortunately paramiko has this problem
-            \pause
-        \item Result: dying workers
+        \item This can result in a problem when...
     \end{itemize}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Gotta catch 'em all}
+    \begin{figure}
+    \includegraphics[height=\textheight]{pikachu}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Gotta catch 'em all}
+    \include{pokemon}
+\end{frame}
+
 \section{RQ in ralph}
-\subsection{Why we nneded it}
+\frame{\sectionpage}
+\subsection{Why we needed it}
+\frame{\subsectionpage}
 
 \begin{frame}
     \frametitle{What is ralph?}
     \begin{itemize}
             \pause
-    \item Asset management
+    \item Reliable database of physical assets
             \pause
-    \item Hardware scanning
+    \item Hardware scanning - 30 plugins
             \pause
     \item Service-oriented pricing
     \end{itemize}
@@ -201,19 +183,26 @@ Allegro Group \\
     \frametitle{Our problem}
     \begin{itemize}
             \pause
-    \item Lot of per-www that take more than http timeout
+    \item Web requests that take more than http timeout
             \pause
-    \item Long automated tasks
+    \item Huge automated tasks
             \pause
-    \item Tasks divisible into subtasks
+    \item ...that are splittable in a natural way
+            \pause
+    \item Things running in separated datacenters
     \end{itemize}
 \end{frame}
 \subsection{Our solutions}
+\frame{\subsectionpage}
+\begin{frame}
+    \frametitle{Delegation}
+    \begin{figure}
+    \includegraphics[height=\textheight]{otto}
+    \end{figure}
+\end{frame}
 \begin{frame}
     \frametitle{Scan}
     \begin{itemize}
-        \pause
-    \item Scan tasks delegate per-plugin tasks
         \pause
     \item Per-environment queues
         \pause
@@ -224,15 +213,34 @@ Allegro Group \\
 \begin{frame}
     \frametitle{Reports}
     \begin{itemize}
+        \pause
     \item Simple framework
         \pause
     \item Tasks as pseudo-views
         \pause
-    \item Using \Verb|job['meta']| to generate ETA/progress-bar
-        \pause
+    \item Using \Verb|job.meta| to generate ETA/progress-bar
     \end{itemize}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Picklable request}
+    \include{prequest}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Recreating the view}
+    \include{getresult}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Generating results}
+    \include{resultgen}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Generating response}
+    \include{responsegen}
+\end{frame}
 
 %------------------------------------------------
 
